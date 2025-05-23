@@ -24,7 +24,6 @@ export default class LevelEnd extends Phaser.Scene {
     }
 
     create(): void {
-        console.log(this.levelName);
         this.backgroundImage = this.add.tileSprite(0, 0, this.cameras.main.width, this.cameras.main.height, this.levelBackgroundName).setOrigin(0, 0).setDepth(-1);
         if (this.isWin) {
             let scorePad : string = Phaser.Utils.String.Pad(this.score, 4, '0', 1);
@@ -34,6 +33,7 @@ export default class LevelEnd extends Phaser.Scene {
             
             this.database = new DBManager();
             let level = this.levelName.toLowerCase();
+            console.log(this.database);
 
             if(this.database.data.levels[level].score < this.score){
                 this.database.data.levels[level].score = this.score;

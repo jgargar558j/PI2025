@@ -7,13 +7,13 @@ export default class DBManager {
         const dbData = localStorage.getItem(Constants.LOCAL_STORAGE.DB_NAME);
         if (dbData) {
             try {
-                this.data = JSON.parse(dbData); // Parsear correctamente los datos
+                this.data = JSON.parse(dbData);
             } catch (error) {
                 console.error("Error al parsear los datos de la base de datos:", error);
-                this.createDB(); // Si hay un error, crea la base de datos inicial
+                this.createDB();
             }
         } else {
-            this.createDB(); // Si no hay datos, crea la base de datos inicial
+            this.createDB();
         }
     }
 
@@ -33,11 +33,19 @@ export default class DBManager {
                 level03: {
                     score: 0,
                     isPassed: false
+                },
+                level04:{
+                    score: 0,
+                    isPassed: false
+                },
+                level05:{
+                    score: 0,
+                    isPassed: false
                 }
             }
         };
         this.data = initialDB;
-        this.saveDB(); // Guarda la base de datos inicial en localStorage
+        this.saveDB();
     }
 
     public saveDB(): void {

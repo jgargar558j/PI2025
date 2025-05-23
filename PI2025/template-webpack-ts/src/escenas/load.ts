@@ -85,6 +85,8 @@ export default class Load extends Phaser.Scene{
         this.load.tilemapTiledJSON(Constants.MAPS.LEVELS.LEVEL_1.TILEMAP_JSON, 'levels/nivel1.json');
         this.load.tilemapTiledJSON(Constants.MAPS.LEVELS.LEVEL_2.TILEMAP_JSON, 'levels/nivel2.json');
         this.load.tilemapTiledJSON(Constants.MAPS.LEVELS.LEVEL_3.TILEMAP_JSON, 'levels/nivel3.json');
+        this.load.tilemapTiledJSON(Constants.MAPS.LEVELS.LEVEL_4.TILEMAP_JSON, 'levels/nivel4.json');
+        this.load.tilemapTiledJSON(Constants.MAPS.LEVELS.LEVEL_5.TILEMAP_JSON, 'levels/nivel5.json');
 
         this.load.image(Constants.MAPS.TILESET, 'levels/nivelestileset.png');
 
@@ -92,6 +94,7 @@ export default class Load extends Phaser.Scene{
         this.load.image(Constants.BACKGROUNDS.LEVEL_1, 'imagenes/Green.png');
         this.load.image(Constants.BACKGROUNDS.LEVEL_2, 'imagenes/Blue.png');
         this.load.image(Constants.BACKGROUNDS.LEVEL_3, 'imagenes/Brown.png');
+        this.load.image(Constants.BACKGROUNDS.LEVEL_4, 'imagenes/Gray.png');
 
         // Cargar fuentes
         this.load.json(Constants.FONTS.JSON, 'fuentes/font.json');
@@ -115,6 +118,8 @@ export default class Load extends Phaser.Scene{
         this.load.audio(Constants.SOUNDS.EFFECTS.ENEMY_DESTROY, 'sounds/effects/enemyDestroy.ogg');
         this.load.audio(Constants.SOUNDS.MUSIC.BACKGROUND, 'sounds/background/backgroundMusic.ogg');
         this.load.audio(Constants.SOUNDS.MUSIC.IN_GAME, 'sounds/background/backgroundMusicGame.ogg');
+        this.load.audio(Constants.SOUNDS.EFFECTS.PLAYER_DAMAGE, 'sounds/effects/playerDamage.ogg');
+        this.load.audio(Constants.SOUNDS.EFFECTS.COLLECT, 'sounds/effects/collect.ogg');
 
         // Cargar recolectables
         this.load.spritesheet(Constants.OBJECTS.COLLECTABLES.FRUITS.APPLE.ID, 'objetos/collectables/fruits/apple.png', { frameWidth: 32, frameHeight: 32 });

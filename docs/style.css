@@ -1,15 +1,59 @@
 body {
-    margin: 0;
-    padding: 0;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #000000;
+    background: radial-gradient(circle at center, #c050b7, #ee9fe7);
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #app {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    border: 4px solid #75217c;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 20px #75217c;
+    min-width: 90vw;
+    min-height: 90vh;
+}
+
+#game-container {
+    width: 100%;
+    height: 100%;
+    max-width: 60vw;
+    max-height: 69vh;
+    min-width: 60vw;
+    min-height: 69vh;
+    aspect-ratio: 16 / 9;
+    background: #411246;
+    border: 4px solid #75217c;
+    border-radius: 10px;
+    box-shadow:
+        0 0 10px #75217c,
+        0 0 20px #75217c,
+        0 0 40px #75217c,
+        0 0 60px #75217c;
+    overflow: hidden;
+    position: relative;
+}
+
+h1 {
+    font-size: 6vh;
+    color: #e0f051;
+    text-shadow:
+        0 0 2px #c4d33b,
+        0 0 5px #c4d33b,
+        0 0 10px #c4d33b,
+        0 0 20px #c4d33b;
+    margin-bottom: 5vh;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
 }

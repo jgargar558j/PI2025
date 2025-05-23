@@ -109,7 +109,7 @@ export default class LevelSelection extends Phaser.Scene {
 
         const level3ButtonShadowTxt = this.add.bitmapText(
             this.cameras.main.width / 2,
-            this.cameras.main.height / 1.5,
+            this.cameras.main.height / 1.7,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_3,
             30
@@ -121,7 +121,7 @@ export default class LevelSelection extends Phaser.Scene {
     
         const level3ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
             this.cameras.main.width / 2,
-            this.cameras.main.height / 1.5,
+            this.cameras.main.height / 1.7,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_3,
             30
@@ -130,6 +130,54 @@ export default class LevelSelection extends Phaser.Scene {
         level3ButtonTxt.setOrigin(0.5, 0.5);
     
         this.changeSceneToLevel(level3ButtonTxt, Constants.SCENES.LEVELS.LEVEL_3);
+
+        const level4ButtonShadowTxt = this.add.bitmapText(
+            this.cameras.main.width / 2,
+            this.cameras.main.height / 1.5,
+            Constants.FONTS.BITMAP,
+            Constants.TEXTS.MAPS.LEVEL_4,
+            30
+        ).setTint(0x000000);
+    
+        level4ButtonShadowTxt.x += 2;
+        level4ButtonShadowTxt.y += 2;
+        level4ButtonShadowTxt.setOrigin(0.5, 0.5);
+    
+        const level4ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
+            this.cameras.main.width / 2,
+            this.cameras.main.height / 1.5,
+            Constants.FONTS.BITMAP,
+            Constants.TEXTS.MAPS.LEVEL_4,
+            30
+        ).setTint(0xFFFFFF).setInteractive();
+    
+        level4ButtonTxt.setOrigin(0.5, 0.5);
+    
+        this.changeSceneToLevel(level4ButtonTxt, Constants.SCENES.LEVELS.LEVEL_4);
+
+        const level5ButtonShadowTxt = this.add.bitmapText(
+            this.cameras.main.width / 2,
+            this.cameras.main.height / 1.2,
+            Constants.FONTS.BITMAP,
+            Constants.TEXTS.MAPS.LEVEL_5,
+            30
+        ).setTint(0x000000);
+    
+        level5ButtonShadowTxt.x += 2;
+        level5ButtonShadowTxt.y += 2;
+        level5ButtonShadowTxt.setOrigin(0.5, 0.5);
+    
+        const level5ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
+            this.cameras.main.width / 2,
+            this.cameras.main.height / 1.2,
+            Constants.FONTS.BITMAP,
+            Constants.TEXTS.MAPS.LEVEL_5,
+            30
+        ).setTint(0xFFFFFF).setInteractive();
+    
+        level5ButtonTxt.setOrigin(0.5, 0.5);
+    
+        this.changeSceneToLevel(level5ButtonTxt, Constants.SCENES.LEVELS.LEVEL_5);
     }
     
     changeSceneToMenu(backTxt: Phaser.GameObjects.BitmapText, scene: string) {

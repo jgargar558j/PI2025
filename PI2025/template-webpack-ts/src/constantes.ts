@@ -10,7 +10,9 @@ const Constants = {
         LEVELS:{
             LEVEL_1: 'Level01',
             LEVEL_2: 'Level02',
-            LEVEL_3: 'Level03'
+            LEVEL_3: 'Level03',
+            LEVEL_4: 'Level04',
+            LEVEL_5: 'Level05'
         }
     },
     MAPS:{
@@ -23,6 +25,12 @@ const Constants = {
             },
             LEVEL_3:{
                 TILEMAP_JSON: 'nivel3',
+            },
+            LEVEL_4:{
+                TILEMAP_JSON: 'nivel4',
+            },
+            LEVEL_5:{
+                TILEMAP_JSON: 'nivel5',
             }
         },
         PLATFORM_LAYER: 'Plataformas',
@@ -32,12 +40,14 @@ const Constants = {
         PLATFORMS: 'platforms',
         COLLECTABLES: 'collectables',
         LOGO: 'logo',
+        FAKE_FINAL: 'fakeFinal',
         TEXTS: 'texto'
     },
     BACKGROUNDS:{
         LEVEL_1: 'Blue',
         LEVEL_2: 'Green',
         LEVEL_3: 'Brown',
+        LEVEL_4: 'Gray'
     },
     EVENTS:{
         LIFES: 'changeLifes',
@@ -73,6 +83,8 @@ const Constants = {
             LEVEL_1:'NIVEL 1',
             LEVEL_2:'NIVEL 2',
             LEVEL_3:'NIVEL 3',
+            LEVEL_4:'NIVEL 4',
+            LEVEL_5:'NIVEL 5',
         },
         CREDITS:{
             GAME_DEVELOPER: 'DESARROLLADOR: JOSE LUIS GARCIA',
@@ -146,7 +158,9 @@ const Constants = {
         EFFECTS:{
             JUMP: 'jump',
             COIN: 'coin',
-            ENEMY_DESTROY: 'enemyDestroy'
+            ENEMY_DESTROY: 'enemyDestroy',
+            PLAYER_DAMAGE: 'playerDamage',
+            COLLECT: 'collect',
         },
         MUSIC:{
             BACKGROUND: 'backgroundMusic',
@@ -155,7 +169,7 @@ const Constants = {
     },
 
     LOCAL_STORAGE:{
-        DB_NAME: 'FrogAlonev01',
+        DB_NAME: 'FrogAlonev1.0',
     },
 
     CONTROLS:{
