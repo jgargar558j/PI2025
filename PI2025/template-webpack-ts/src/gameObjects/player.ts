@@ -92,15 +92,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite{
             this.upControl; // Asumiendo que upControl se activa solo al presionar, no mantener
     
         // Ejecutar salto si aún no se alcanza el máximo permitido
-        if (jumpPressed && this.jumpCount < this.maxJumps-1) {
+        if (jumpPressed && this.jumpCount < this.maxJumps -1) {
             if (this.database.data.effects) {
                 this.jumpSound.play();
             }
-        
+
             this.setVelocityY(-250);
             this.anims.stop();
             this.setTexture(Constants.PLAYER.ID, Constants.PLAYER.ANIMATION.JUMP);
             this.jumpCount++;
+
+            // Reiniciar el control táctil para evitar múltiples saltos por mantener presionado
+            this.upControl = false;
         }
 
         if (this.body?.blocked.down) {
