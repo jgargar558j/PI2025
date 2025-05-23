@@ -101,6 +101,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.anims.stop();
             this.setTexture(Constants.PLAYER.ID, Constants.PLAYER.ANIMATION.JUMP);
             this.jumpCount++;
+
+            // Reiniciar el control táctil para evitar múltiples saltos por mantener presionado
+            this.upControl = false;
         }
 
         if (this.body?.blocked.down) {
