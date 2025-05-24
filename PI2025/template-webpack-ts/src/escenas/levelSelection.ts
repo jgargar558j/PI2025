@@ -9,7 +9,7 @@ export default class LevelSelection extends Phaser.Scene {
     create(){
         this.cameras.main.setBackgroundColor('#f09cbd');
         this.createTexts();
-        
+        this.add.image(this.cameras.main.width/2, this.cameras.main.height/2, 'logo').setScale(0.4).setAlpha(0.2).setOrigin(0.5,0.5).setDepth(-1);
     }
 
     createTexts() {
@@ -60,8 +60,8 @@ export default class LevelSelection extends Phaser.Scene {
         this.changeSceneToMenu(backTxt, Constants.SCENES.MENU);
     
         const level1ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 4,
+            this.cameras.main.width / 3.5,
+            this.cameras.main.height / 3,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_1,
             30
@@ -72,8 +72,8 @@ export default class LevelSelection extends Phaser.Scene {
         level1ButtonShadowTxt.setOrigin(0.5, 0.5);
     
         const level1ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 4,
+            this.cameras.main.width / 3.5,
+            this.cameras.main.height / 3,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_1,
             30
@@ -84,8 +84,8 @@ export default class LevelSelection extends Phaser.Scene {
         this.changeSceneToLevel(level1ButtonTxt, Constants.SCENES.LEVELS.LEVEL_1);
     
         const level2ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 2,
+            this.cameras.main.width / 1.5,
+            this.cameras.main.height / 3,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_2,
             30
@@ -96,8 +96,8 @@ export default class LevelSelection extends Phaser.Scene {
         level2ButtonShadowTxt.setOrigin(0.5, 0.5);
     
         const level2ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 2,
+            this.cameras.main.width / 1.5,
+            this.cameras.main.height / 3,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_2,
             30
@@ -108,8 +108,8 @@ export default class LevelSelection extends Phaser.Scene {
         this.changeSceneToLevel(level2ButtonTxt, Constants.SCENES.LEVELS.LEVEL_2);
 
         const level3ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 1.7,
+            this.cameras.main.width / 3.5,
+            this.cameras.main.height / 2,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_3,
             30
@@ -120,8 +120,8 @@ export default class LevelSelection extends Phaser.Scene {
         level3ButtonShadowTxt.setOrigin(0.5, 0.5);
     
         const level3ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 1.7,
+            this.cameras.main.width / 3.5,
+            this.cameras.main.height / 2,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_3,
             30
@@ -132,8 +132,8 @@ export default class LevelSelection extends Phaser.Scene {
         this.changeSceneToLevel(level3ButtonTxt, Constants.SCENES.LEVELS.LEVEL_3);
 
         const level4ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 1.5,
+            this.cameras.main.width / 1.5,
+            this.cameras.main.height / 2,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_4,
             30
@@ -144,8 +144,8 @@ export default class LevelSelection extends Phaser.Scene {
         level4ButtonShadowTxt.setOrigin(0.5, 0.5);
     
         const level4ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 1.5,
+            this.cameras.main.width / 1.5,
+            this.cameras.main.height / 2,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_4,
             30
@@ -157,7 +157,7 @@ export default class LevelSelection extends Phaser.Scene {
 
         const level5ButtonShadowTxt = this.add.bitmapText(
             this.cameras.main.width / 2,
-            this.cameras.main.height / 1.2,
+            this.cameras.main.height / 1.5,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_5,
             30
@@ -169,7 +169,7 @@ export default class LevelSelection extends Phaser.Scene {
     
         const level5ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
             this.cameras.main.width / 2,
-            this.cameras.main.height / 1.2,
+            this.cameras.main.height / 1.5,
             Constants.FONTS.BITMAP,
             Constants.TEXTS.MAPS.LEVEL_5,
             30
