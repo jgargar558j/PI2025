@@ -111,7 +111,7 @@ export default class Load extends Phaser.Scene{
         this.load.spritesheet(Constants.ENEMIES.DEATH.ID, 'enemies/death.png', { frameWidth: 38, frameHeight: 38 });
 
         // Carga plataformas
-        this.load.spritesheet(Constants.PLATFORMS.ID, 'objetos/platforms/brown/brownOn.png', { frameWidth: 32, frameHeight: 8 });
+        this.load.spritesheet(Constants.PLATFORMS.ID, 'objetos/platforms/brown/brown.png', { frameWidth: 32, frameHeight: 8 });
 
         // Cargar sonidos
         this.load.audio(Constants.SOUNDS.EFFECTS.JUMP, 'sounds/effects/jump.ogg');
