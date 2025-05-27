@@ -1,202 +1,174 @@
 import Constants from "../constantes";
+import DBManager from "../database/dbManager";
 
 export default class LevelSelection extends Phaser.Scene {
+  private clickSound: Phaser.Sound.BaseSound;
+  private database: DBManager;
+  private lockSound: Phaser.Sound.BaseSound;
 
-    constructor(){
-        super(Constants.SCENES.LEVEL_SELECTION);
-    }
+  constructor() {
+    super(Constants.SCENES.LEVEL_SELECTION);
+  }
 
-    create(){
-        this.cameras.main.setBackgroundColor('#f09cbd');
-        this.createTexts();
-        this.add.image(this.cameras.main.width/2, this.cameras.main.height/2, 'logo').setScale(0.4).setAlpha(0.2).setOrigin(0.5,0.5).setDepth(-1);
-    }
+  create() {
+    this.cameras.main.setBackgroundColor("#f09cbd");
+    this.clickSound = this.sound.add(Constants.SOUNDS.EFFECTS.CLICK, {
+      loop: false,
+      volume: 2,
+    });
+    this.lockSound = this.sound.add(Constants.SOUNDS.EFFECTS.LOCK, {
+      loop: false,
+      volume: 1,
+    });
+    this.database = new DBManager();
+    this.createTexts();
+    this.add
+      .image(this.cameras.main.width / 2, this.cameras.main.height / 2, "logo")
+      .setScale(0.4)
+      .setAlpha(0.2)
+      .setOrigin(0.5, 0.5)
+      .setDepth(-1);
+  }
 
-    createTexts() {
-        const levelSelectionTxtShadow = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 8,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MENU.LEVEL_SELECTION,
-            40
-        ).setTint(0x000000);
-    
-        levelSelectionTxtShadow.x += 4;
-        levelSelectionTxtShadow.y += 4;
-        levelSelectionTxtShadow.setOrigin(0.5, 0.5);
-    
-        const levelSelectionTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 8,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MENU.LEVEL_SELECTION,
-            40
-        ).setTint(0xFFFFFF);
-    
-        levelSelectionTxt.setOrigin(0.5, 0.5);
-    
-        const backTxtShadow = this.add.bitmapText(
-            this.cameras.main.width / 8,
-            this.cameras.main.height / 1.1,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MENU.BACK,
-            30
-        ).setTint(0x000000);
-    
-        backTxtShadow.x += 2;
-        backTxtShadow.y += 2;
-        backTxtShadow.setOrigin(0.5, 0.5);
-    
-        const backTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 8,
-            this.cameras.main.height / 1.1,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MENU.BACK,
-            30
-        ).setTint(0xFFFFFF).setInteractive();
-    
-        backTxt.setOrigin(0.5, 0.5);
-    
-        this.changeSceneToMenu(backTxt, Constants.SCENES.MENU);
-    
-        const level1ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 3.5,
-            this.cameras.main.height / 3,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_1,
-            30
-        ).setTint(0x000000);
-    
-        level1ButtonShadowTxt.x += 2;
-        level1ButtonShadowTxt.y += 2;
-        level1ButtonShadowTxt.setOrigin(0.5, 0.5);
-    
-        const level1ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 3.5,
-            this.cameras.main.height / 3,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_1,
-            30
-        ).setTint(0xFFFFFF).setInteractive();
-    
-        level1ButtonTxt.setOrigin(0.5, 0.5);
-    
-        this.changeSceneToLevel(level1ButtonTxt, Constants.SCENES.LEVELS.LEVEL_1);
-    
-        const level2ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 1.5,
-            this.cameras.main.height / 3,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_2,
-            30
-        ).setTint(0x000000);
-    
-        level2ButtonShadowTxt.x += 2;
-        level2ButtonShadowTxt.y += 2;
-        level2ButtonShadowTxt.setOrigin(0.5, 0.5);
-    
-        const level2ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 1.5,
-            this.cameras.main.height / 3,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_2,
-            30
-        ).setTint(0xFFFFFF).setInteractive();
-    
-        level2ButtonTxt.setOrigin(0.5, 0.5);
-    
-        this.changeSceneToLevel(level2ButtonTxt, Constants.SCENES.LEVELS.LEVEL_2);
+  createTexts() {
+    const db = new DBManager();
 
-        const level3ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 3.5,
-            this.cameras.main.height / 2,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_3,
-            30
-        ).setTint(0x000000);
-    
-        level3ButtonShadowTxt.x += 2;
-        level3ButtonShadowTxt.y += 2;
-        level3ButtonShadowTxt.setOrigin(0.5, 0.5);
-    
-        const level3ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 3.5,
-            this.cameras.main.height / 2,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_3,
-            30
-        ).setTint(0xFFFFFF).setInteractive();
-    
-        level3ButtonTxt.setOrigin(0.5, 0.5);
-    
-        this.changeSceneToLevel(level3ButtonTxt, Constants.SCENES.LEVELS.LEVEL_3);
+    const levels = [
+      {
+        key: "level01",
+        text: Constants.TEXTS.MAPS.LEVEL_1,
+        scene: Constants.SCENES.LEVELS.LEVEL_1,
+        x: this.cameras.main.width / 3.5,
+        y: this.cameras.main.height / 3,
+      },
+      {
+        key: "level02",
+        text: Constants.TEXTS.MAPS.LEVEL_2,
+        scene: Constants.SCENES.LEVELS.LEVEL_2,
+        x: this.cameras.main.width / 1.5,
+        y: this.cameras.main.height / 3,
+      },
+      {
+        key: "level03",
+        text: Constants.TEXTS.MAPS.LEVEL_3,
+        scene: Constants.SCENES.LEVELS.LEVEL_3,
+        x: this.cameras.main.width / 3.5,
+        y: this.cameras.main.height / 2,
+      },
+      {
+        key: "level04",
+        text: Constants.TEXTS.MAPS.LEVEL_4,
+        scene: Constants.SCENES.LEVELS.LEVEL_4,
+        x: this.cameras.main.width / 1.5,
+        y: this.cameras.main.height / 2,
+      },
+      {
+        key: "level05",
+        text: Constants.TEXTS.MAPS.LEVEL_5,
+        scene: Constants.SCENES.LEVELS.LEVEL_5,
+        x: this.cameras.main.width / 2,
+        y: this.cameras.main.height / 1.5,
+      },
+    ];
 
-        const level4ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 1.5,
-            this.cameras.main.height / 2,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_4,
-            30
-        ).setTint(0x000000);
-    
-        level4ButtonShadowTxt.x += 2;
-        level4ButtonShadowTxt.y += 2;
-        level4ButtonShadowTxt.setOrigin(0.5, 0.5);
-    
-        const level4ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 1.5,
-            this.cameras.main.height / 2,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_4,
-            30
-        ).setTint(0xFFFFFF).setInteractive();
-    
-        level4ButtonTxt.setOrigin(0.5, 0.5);
-    
-        this.changeSceneToLevel(level4ButtonTxt, Constants.SCENES.LEVELS.LEVEL_4);
+    levels.forEach((level) => {
+      const isAccessible = db.canAccessLevel(level.key);
 
-        const level5ButtonShadowTxt = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 1.5,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_5,
-            30
-        ).setTint(0x000000);
-    
-        level5ButtonShadowTxt.x += 2;
-        level5ButtonShadowTxt.y += 2;
-        level5ButtonShadowTxt.setOrigin(0.5, 0.5);
-    
-        const level5ButtonTxt: Phaser.GameObjects.BitmapText = this.add.bitmapText(
-            this.cameras.main.width / 2,
-            this.cameras.main.height / 1.5,
-            Constants.FONTS.BITMAP,
-            Constants.TEXTS.MAPS.LEVEL_5,
-            30
-        ).setTint(0xFFFFFF).setInteractive();
-    
-        level5ButtonTxt.setOrigin(0.5, 0.5);
-    
-        this.changeSceneToLevel(level5ButtonTxt, Constants.SCENES.LEVELS.LEVEL_5);
-    }
-    
-    changeSceneToMenu(backTxt: Phaser.GameObjects.BitmapText, scene: string) {
-        backTxt.on('pointerdown', () => {
-            this.scene.stop(Constants.SCENES.SETTINGS);
-            this.scene.start(scene);
+      const displayText = isAccessible ? level.text : `${level.text}`;
+      const tintColor = isAccessible ? 0xffffff : 0x888888;
+
+      const shadow = this.add
+        .bitmapText(level.x, level.y, Constants.FONTS.BITMAP, displayText, 30)
+        .setTint(0x000000)
+        .setOrigin(0.5, 0.5);
+      shadow.x += 2;
+      shadow.y += 2;
+
+      const button = this.add
+        .bitmapText(level.x, level.y, Constants.FONTS.BITMAP, displayText, 30)
+        .setTint(tintColor)
+        .setOrigin(0.5, 0.5);
+
+      if (isAccessible) {
+        button.setInteractive();
+        this.changeSceneToLevel(button, level.scene);
+      } else {
+        button.setInteractive();
+        button.on("pointerdown", () => {
+          button.disableInteractive();
+          this.lockSound.play();
+          this.tweens.add({
+            targets: button,
+            x: button.x + 5,
+            duration: 50,
+            yoyo: true,
+            repeat: 3,
+            onComplete: () => {
+              button.x = level.x;
+              button.setInteractive();
+            },
+          });
         });
-    }
-    
-    changeSceneToLevel(playTxt: Phaser.GameObjects.BitmapText, scene: string) {
-        playTxt.on('pointerdown', () => {
-            playTxt.disableInteractive();
-            this.cameras.main.fade(500, 0, 0, 0);
-            this.cameras.main.once('camerafadeoutcomplete', () => {
-                this.sound.stopAll();
-                this.scene.start(scene);
-                this.scene.start(Constants.SCENES.HUD,{levelName:scene});
-                this.scene.bringToTop(Constants.SCENES.HUD);
-            });
-        });
-    }
+
+        this.add
+          .text(level.x + 50, level.y - 15, "🔐", {
+            font: "38px Arial",
+            color: "#888888",
+          })
+          .setOrigin(-1.2, 0.2);
+      }
+    });
+
+    const backTxtShadow = this.add
+      .bitmapText(
+        this.cameras.main.width / 8,
+        this.cameras.main.height / 1.1,
+        Constants.FONTS.BITMAP,
+        Constants.TEXTS.MENU.BACK,
+        30
+      )
+      .setTint(0x000000);
+    backTxtShadow.x += 2;
+    backTxtShadow.y += 2;
+    backTxtShadow.setOrigin(0.5, 0.5);
+
+    const backTxt = this.add
+      .bitmapText(
+        this.cameras.main.width / 8,
+        this.cameras.main.height / 1.1,
+        Constants.FONTS.BITMAP,
+        Constants.TEXTS.MENU.BACK,
+        30
+      )
+      .setTint(0xffffff)
+      .setInteractive();
+    backTxt.setOrigin(0.5, 0.5);
+    this.changeSceneToMenu(backTxt, Constants.SCENES.MENU);
+  }
+
+  changeSceneToMenu(backTxt: Phaser.GameObjects.BitmapText, scene: string) {
+    backTxt.on("pointerdown", () => {
+      if (this.database.data.effects) {
+        this.clickSound.play();
+      }
+      this.scene.stop(Constants.SCENES.SETTINGS);
+      this.scene.start(scene);
+    });
+  }
+
+  changeSceneToLevel(playTxt: Phaser.GameObjects.BitmapText, scene: string) {
+    playTxt.on("pointerdown", () => {
+      if (this.database.data.effects) {
+        this.clickSound.play();
+      }
+      playTxt.disableInteractive();
+      this.cameras.main.fade(500, 0, 0, 0);
+      this.cameras.main.once("camerafadeoutcomplete", () => {
+        this.sound.stopAll();
+        this.scene.start(scene);
+        this.scene.start(Constants.SCENES.HUD, { levelName: scene });
+        this.scene.bringToTop(Constants.SCENES.HUD);
+      });
+    });
+  }
 }

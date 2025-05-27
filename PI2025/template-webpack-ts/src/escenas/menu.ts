@@ -7,6 +7,10 @@ export default class Menu extends Phaser.Scene {
 
   private backgroundMusic: Phaser.Sound.BaseSound;
 
+  private clickSound: Phaser.Sound.BaseSound;
+
+  private database: DBManager;
+
   constructor() {
     super(Constants.SCENES.MENU);
   }
@@ -26,10 +30,15 @@ export default class Menu extends Phaser.Scene {
     this.input.once("pointerdown", () => {
       this.sound.unlock(); // Desbloquea el sistema de sonido en móviles
     });
+
+    this.clickSound = this.sound.add(Constants.SOUNDS.EFFECTS.CLICK, {
+      loop: false,
+      volume: 2,
+    });
   }
 
   createAndPlayMusic() {
-    const database = new DBManager(); // Instancia de la base de datos
+    this.database = new DBManager(); // Instancia de la base de datos
 
     if (!this.backgroundMusic) {
       this.backgroundMusic = this.sound.add(Constants.SOUNDS.MUSIC.BACKGROUND, {
@@ -40,9 +49,9 @@ export default class Menu extends Phaser.Scene {
     }
 
     // Verifica el estado de la música desde la base de datos
-    if (database.data.music && !this.backgroundMusic.isPlaying) {
+    if (this.database.data.music && !this.backgroundMusic.isPlaying) {
       this.backgroundMusic.play();
-    } else if (!database.data.music && this.backgroundMusic.isPlaying) {
+    } else if (!this.database.data.music && this.backgroundMusic.isPlaying) {
       this.backgroundMusic.stop();
     }
   }
@@ -154,6 +163,9 @@ export default class Menu extends Phaser.Scene {
    */
   changeSceneToLevel(playTxt: Phaser.GameObjects.BitmapText, scene: string) {
     playTxt.on("pointerdown", () => {
+      if(this.database.data.effects){
+        this.clickSound.play();
+      }
       this.scene.start(scene); // Lanza la escena LevelSelection y detiene la actual
     });
   }
@@ -163,6 +175,9 @@ export default class Menu extends Phaser.Scene {
     scene: string
   ) {
     settingsTxt.on("pointerdown", () => {
+      if(this.database.data.effects){
+        this.clickSound.play();
+      }
       this.scene.start(scene); // Lanza la escena Settings sin detener la actual
     });
   }

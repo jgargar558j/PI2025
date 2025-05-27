@@ -118,8 +118,10 @@ export default class Load extends Phaser.Scene{
         this.load.audio(Constants.SOUNDS.EFFECTS.ENEMY_DESTROY, 'sounds/effects/enemyDestroy.ogg');
         this.load.audio(Constants.SOUNDS.MUSIC.BACKGROUND, 'sounds/background/backgroundMusic.ogg');
         this.load.audio(Constants.SOUNDS.MUSIC.IN_GAME, 'sounds/background/backgroundMusicGame.ogg');
-        this.load.audio(Constants.SOUNDS.EFFECTS.PLAYER_DAMAGE, 'sounds/effects/playerDamage.ogg');
+        this.load.audio(Constants.SOUNDS.EFFECTS.PLAYER_DAMAGE, 'sounds/effects/playerDamage.mp3');
         this.load.audio(Constants.SOUNDS.EFFECTS.COLLECT, 'sounds/effects/collect.ogg');
+        this.load.audio(Constants.SOUNDS.EFFECTS.CLICK, 'sounds/effects/clickSound.ogg');
+        this.load.audio(Constants.SOUNDS.EFFECTS.LOCK, 'sounds/effects/lockSound.ogg');
 
         // Cargar recolectables
         this.load.spritesheet(Constants.OBJECTS.COLLECTABLES.FRUITS.APPLE.ID, 'objetos/collectables/fruits/apple.png', { frameWidth: 32, frameHeight: 32 });

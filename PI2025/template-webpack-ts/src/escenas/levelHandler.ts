@@ -110,7 +110,6 @@ export default class LevelHandler extends Phaser.Scene{
     }
 
     createBackgroundScroll(background:string):void{
-        // Cargamos el fondo
         this.backgroundImage = this.add.tileSprite(0,0,this.mapaNivel.widthInPixels,
             this.mapaNivel.heightInPixels,background).setOrigin(0,0).setDepth(-1);
 
@@ -275,7 +274,7 @@ export default class LevelHandler extends Phaser.Scene{
                 obj.y!,
                 Constants.FONTS.BITMAP,
                 mensaje,
-                15
+                20
             ).setScale(0.5).setCenterAlign().setMaxWidth(250);
         });
     }

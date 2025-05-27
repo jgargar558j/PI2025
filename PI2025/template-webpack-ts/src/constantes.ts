@@ -77,7 +77,9 @@ const Constants = {
             PASSED: 'SUPERADO',
             NON_PASSED: 'NO SUPERADO',
             MUSIC: 'MUSICA',
-            EFFECTS: 'EFECTOS'
+            EFFECTS: 'EFECTOS',
+            NEXT: 'SIGUIENTE NIVEL',
+            RETRY: 'REINTENTAR',
         },
         MAPS:{
             LEVEL_1:'NIVEL 1',
@@ -161,6 +163,8 @@ const Constants = {
             ENEMY_DESTROY: 'enemyDestroy',
             PLAYER_DAMAGE: 'playerDamage',
             COLLECT: 'collect',
+            CLICK: 'clickSound',
+            LOCK: 'lockSound'
         },
         MUSIC:{
             BACKGROUND: 'backgroundMusic',

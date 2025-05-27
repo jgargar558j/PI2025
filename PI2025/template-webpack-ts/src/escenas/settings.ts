@@ -5,37 +5,49 @@ export default class Settings extends Phaser.Scene{
     
     private backgroundMusic: Phaser.Sound.BaseSound;
 
+    private clickSound: Phaser.Sound.BaseSound;
+
+    private database: DBManager;
+
     constructor(){
         super(Constants.SCENES.SETTINGS);
     }
 
     create(){
         this.add.image(this.cameras.main.width/2, this.cameras.main.height/2, 'logo').setScale(0.4).setAlpha(0.5).setOrigin(0.5,0.5);
-        let database = new DBManager();
+        this.database = new DBManager();
 
         this.cameras.main.setBackgroundColor('#f09cbd');
+        this.clickSound = this.sound.add(Constants.SOUNDS.EFFECTS.CLICK, {
+            loop: false,
+            volume: 2,
+        });
         this.createTexts();
 
         this.backgroundMusic = this.registry.get('backgroundMusic') as Phaser.Sound.BaseSound;
 
-        let musicOnOff : Phaser.GameObjects.Image = this.add.image(this.cameras.main.width / 3, this.cameras.main.height / 2.5, this.getSoundImg(database.data.music)).setScale(0.1).setInteractive();
-        let effectsOnOff : Phaser.GameObjects.Image = this.add.image(this.cameras.main.width / 3, this.cameras.main.height / 1.6, this.getSoundImg(database.data.effects)).setScale(0.1).setInteractive();
+        let musicOnOff : Phaser.GameObjects.Image = this.add.image(this.cameras.main.width / 3, this.cameras.main.height / 2.5, this.getSoundImg(this.database.data.music)).setScale(0.1).setInteractive();
+        let effectsOnOff : Phaser.GameObjects.Image = this.add.image(this.cameras.main.width / 3, this.cameras.main.height / 1.6, this.getSoundImg(this.database.data.effects)).setScale(0.1).setInteractive();
 
         musicOnOff.on('pointerdown', () => {
-            database.data.music = !database.data.music;
-            database.saveDB();
-            musicOnOff.setTexture(this.getSoundImg(database.data.music));
+            this.clickSound.play();
+            this.database.data.music = !this.database.data.music;
+            this.database.saveDB();
+            musicOnOff.setTexture(this.getSoundImg(this.database.data.music));
 
-            if(!database.data.music){
+            if(!this.database.data.music){
                 this.backgroundMusic.stop();
             }else{
                 this.backgroundMusic.play();
             }
         });
         effectsOnOff.on('pointerdown', () => {
-            database.data.effects = !database.data.effects;
-            database.saveDB();
-            effectsOnOff.setTexture(this.getSoundImg(database.data.effects));
+            this.database.data.effects = !this.database.data.effects;
+            if(this.database.data.effects){
+                this.clickSound.play();
+            }
+            this.database.saveDB();
+            effectsOnOff.setTexture(this.getSoundImg(this.database.data.effects));
         });
     }
 
@@ -137,6 +149,9 @@ export default class Settings extends Phaser.Scene{
 
     changeSceneToMenu(backTxt: Phaser.GameObjects.BitmapText, scene: string) {
         backTxt.on('pointerdown', () => {
+            if(this.database.data.effects){
+                this.clickSound.play();
+            }
             this.scene.stop(Constants.SCENES.SETTINGS);
             this.scene.start(scene);
         });   
