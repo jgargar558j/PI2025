@@ -69,6 +69,20 @@ Si el usuario dice "qué pasa bala" o "que pasa bala", responde con: "¡Qué pas
 
       conversationHistory.push({ role: "user", content: userPrompt });
 
+      // Crear elemento con animación de puntos
+      const typingMessage = document.createElement("div");
+      typingMessage.innerHTML = `🤖 <span class="typing">escribiendo</span><span class="dots">.</span>`;
+      chatMessages.appendChild(typingMessage);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Iniciar animación de puntos
+      let dotCount = 1;
+      const dotsSpan = typingMessage.querySelector(".dots");
+      const dotInterval = setInterval(() => {
+        dotCount = (dotCount % 3) + 1;
+        dotsSpan.textContent = ".".repeat(dotCount);
+      }, 400);
+
       try {
         const response = await fetch(
           "https://frogaloneiaserver.onrender.com/api/chat",
@@ -88,16 +102,17 @@ Si el usuario dice "qué pasa bala" o "que pasa bala", responde con: "¡Qué pas
         }
 
         const data = await response.json();
-        console.log(data);
         const aiMessage =
           data.candidates?.[0]?.content?.parts?.[0]?.text || "Sin respuesta";
 
         conversationHistory.push({ role: "assistant", content: aiMessage });
 
-        appendMessage("🤖", aiMessage);
+        clearInterval(dotInterval); // detener animación de puntos
+        typingMessage.textContent = `🤖 ${aiMessage}`;
       } catch (error) {
         console.error("Error:", error);
-        appendMessage("🤖", "Ocurrió un error al procesar tu mensaje.");
+        clearInterval(dotInterval);
+        typingMessage.textContent = "🤖 Ocurrió un error al procesar tu mensaje.";
       }
     }
   });
@@ -107,5 +122,6 @@ Si el usuario dice "qué pasa bala" o "que pasa bala", responde con: "¡Qué pas
     message.textContent = `${sender} ${text}`;
     chatMessages.appendChild(message);
     chatMessages.scrollTop = chatMessages.scrollHeight;
+    return message;
   }
 });
