@@ -1,114 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FrogAlone</title>
-    <link rel="icon" href="favicon.png" type="image/png" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <script src="script.js"></script>
-  </head>
 
-  <body>
-    <div id="app">
-      <h1>FrogAlone</h1>
-      <div id="game-wrapper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FrogAlone</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>FrogAlone</h1>
+    <div id="game-wrapper">
+      <a href="https://www.apba.es/" target="_blank">
+        <img src="assets/imagenes/anuncios/puerto.jpg" alt="Lateral Izquierdo" class="side-image left" />
+      </a>
+
+      <div id="game-container"></div>
+
+      <button id="fullscreen-btn" title="Pantalla completa">⛶</button>
+      <div class="mobile-ads">
         <a href="https://www.apba.es/" target="_blank">
-          <img
-            src="assets/imagenes/anuncios/puerto.jpg"
-            alt="Lateral Izquierdo"
-            class="side-image left"
-          />
+          <img src="assets/imagenes/anuncios/puerto.jpg" alt="Anuncio Puerto" class="mobile-ad" />
         </a>
-
-        <div id="game-container"></div>
-
-        <button id="fullscreen-btn" title="Pantalla completa">⛶</button>
-
         <a href="https://www.youtube.com/watch?v=P78pl1FUXfA" target="_blank">
-          <img
-            src="assets/imagenes/anuncios/tron.jpg"
-            alt="Lateral Derecho"
-            class="side-image right"
-          />
+          <img src="assets/imagenes/anuncios/tron.jpg" alt="Anuncio Tron" class="mobile-ad" />
         </a>
       </div>
+
+      <a href="https://www.youtube.com/watch?v=P78pl1FUXfA" target="_blank">
+        <img src="assets/imagenes/anuncios/tron.jpg" alt="Lateral Derecho" class="side-image right" />
+      </a>
     </div>
+  </div>
 
-    <div id="info-sections">
-      <section class="info-panel" id="how-to-play">
-        <h2>🎮 ¿Cómo jugar?</h2>
-        <p>
-          Usa Usa ⬅️➡️ o A D para moverte y ⬆️, W o ESPACIO para saltar. Evita
-          obstáculos y enemigos, y recoge frutas para ganar puntos y pasar el
-          nivel cogiendo el trofeo.
-        </p>
-      </section>
+  <div id="info-sections">
+    <section class="info-panel" id="how-to-play">
+      <h2>🎮 ¿Cómo jugar?</h2>
+      <p>
+        Usa Usa ⬅️➡️ o A D para moverte y ⬆️, W o ESPACIO para saltar. Evita
+        obstáculos y enemigos, y recoge frutas para ganar puntos y pasar el
+        nivel cogiendo el trofeo.
+      </p>
+    </section>
 
-      <section class="info-panel" id="story">
-        <h2>🐸 Historia</h2>
-        <p>
-          FrogAlone es una rana solitaria que ha perdido toda esperenza y a lo
-          único que se dedica es a coger frutas y trofeos mientras pisa cabezas
-          de animales que le caen mal.
-        </p>
-      </section>
+    <section class="info-panel" id="story">
+      <h2>🐸 Historia</h2>
+      <p>
+        FrogAlone es una rana solitaria que ha perdido toda esperenza y a lo
+        único que se dedica es a coger frutas y trofeos mientras pisa cabezas
+        de animales que le caen mal.
+      </p>
+    </section>
 
-      <section class="info-panel" id="tech">
-        <h2>🛠️ Desarrollo técnico</h2>
-        <p>
-          Este juego ha sido desarrollado utilizando el framework de Phaser,
-          como motor para físicas y animaciones al más puro estilo 8-bit, junto
-          con TypeScript. Si quieres más información recomendamos ver la
-          documentación expuesta en las carpetas del código del videojuego.
-        </p>
-      </section>
+    <section class="info-panel" id="tech">
+      <h2>🛠️ Desarrollo técnico</h2>
+      <p>
+        Este juego ha sido desarrollado utilizando el framework de Phaser,
+        como motor para físicas y animaciones al más puro estilo 8-bit, junto
+        con TypeScript. Si quieres más información recomendamos ver la
+        documentación expuesta en las carpetas del código del videojuego.
+      </p>
+    </section>
 
-      <section class="info-panel" id="github">
-        <h2>📂 Código fuente</h2>
-        <p>Puedes ver el código completo en el repositorio de GitHub:</p>
-        <a
-          href="https://github.com/jgargar558j/PI2025/tree/master/PI2025"
-          target="_blank"
-          >🔗 Ver en GitHub</a
-        >
-      </section>
+    <section class="info-panel" id="github">
+      <h2>📂 Código fuente</h2>
+      <p>Puedes ver el código completo en el repositorio de GitHub:</p>
+      <a href="https://github.com/jgargar558j/PI2025/tree/master/PI2025" target="_blank">🔗 Ver en GitHub</a>
+    </section>
 
-      <section class="info-panel" id="personajes">
-        <h2>🧍 Personajes</h2>
-        <p>
-          Conoce a Hector, una rana valiente pero que ha perdido el norte desde
-          que no encuentra a otra rana para hablar. Conoce lo que le diria
-          Hector a otra rana si la viera:
-        </p>
-        <a href="https://www.youtube.com/shorts/CvX02gMfXZQ" target="_blank"
-          >🗣️ ¿Qué le dice una rana a otra rana?</a
-        >
-      </section>
-      <section class="info-panel" id="bugs">
-        <h2>📬 Contacto</h2>
-        <p>¿Tienes sugerencias o encontraste un bug? Escríbenos a:</p>
-        <a href="mailto:frogalone77@gmail.com">📩 frogalone77@gmail.com</a>
-      </section>
+    <section class="info-panel" id="personajes">
+      <h2>🧍 Personajes</h2>
+      <p>
+        Conoce a Hector, una rana valiente pero que ha perdido el norte desde
+        que no encuentra a otra rana para hablar. Conoce lo que le diria
+        Hector a otra rana si la viera:
+      </p>
+      <a href="https://www.youtube.com/shorts/CvX02gMfXZQ" target="_blank">🗣️ ¿Qué le dice una rana a otra rana?</a>
+    </section>
+    <section class="info-panel" id="bugs">
+      <h2>📬 Contacto</h2>
+      <p>¿Tienes sugerencias o encontraste un bug? Escríbenos a:</p>
+      <a href="mailto:frogalone77@gmail.com">📩 frogalone77@gmail.com</a>
+    </section>
+  </div>
+
+  <script type="module" src="dist/main.js"></script>
+
+  <div id="chat-toggle">💬</div>
+  <div id="chat-window">
+    <div id="chat-header">💬 Chat con IA</div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Escribe tu mensaje..." />
     </div>
+  </div>
+</body>
 
-    <script type="module" src="dist/main.js"></script>
-
-    <div id="chat-toggle">💬</div>
-    <div id="chat-window">
-      <div id="chat-header">💬 Chat con IA</div>
-      <div id="chat-messages"></div>
-      <div id="chat-input-container">
-        <input
-          type="text"
-          id="chat-input"
-          placeholder="Escribe tu mensaje..."
-        />
-      </div>
-    </div>
-  </body>
 </html>

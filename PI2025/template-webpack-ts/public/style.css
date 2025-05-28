@@ -206,6 +206,118 @@ canvas {
   font-family: "Press Start 2P", monospace;
 }
 
-#chat-window{
+#chat-window {
+  display: none;
+}
+
+.mobile-ads {
+  display: none;
+}
+
+/*
+  MEDIA QUERY PARA MÓVILES
+*/
+
+@media (max-width: 768px) {
+  body {
+    font-size: 12px;
+    padding: 0;
+  }
+
+  #app {
+    width: 98vw;
+    margin: 2vh 0;
+    border-width: 2px;
+  }
+
+  h1 {
+    font-size: 4vh;
+    margin-bottom: 3vh;
+    text-align: center;
+  }
+
+  #game-wrapper {
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .side-image {
     display: none;
+  }
+
+  #game-container {
+    width: 90vw;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  #fullscreen-btn {
+    font-size: 5vw;
+    padding: 1vw 2vw;
+    margin-top: 2vh;
+    margin-left: 0;
+  }
+
+  #info-sections {
+    grid-template-columns: 1fr;
+    gap: 5vh;
+    padding: 5vh 5vw;
+  }
+
+  .info-panel {
+    font-size: 3vw;
+    padding: 2vh 5vw;
+  }
+
+  #chat-toggle {
+    width: 70px;
+    height: 70px;
+    font-size: 2em;
+    bottom: 1vh;
+    right: 1vw;
+  }
+
+  #chat-window {
+    width: 90vw;
+    height: 60vh;
+    bottom: 7vh;
+    right: 2.5vw;
+    font-size: 1em;
+  }
+
+  #chat-header {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  #chat-messages {
+    font-size: 14px;
+  }
+
+  #chat-input {
+    font-size: 0.9em;
+  }
+
+  /* Ocultar imágenes laterales originales */
+  .side-image {
+    display: none;
+  }
+
+  /* Mostrar nuevas imágenes para móvil */
+  .mobile-ads {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: center;
+    margin-top: 2vh;
+  }
+
+  .mobile-ad {
+    width: 80vw;
+    max-height: 30vh;
+    object-fit: cover;
+    border: 3px solid #75217c;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #75217c, 0 0 20px #75217c;
+  }
 }
