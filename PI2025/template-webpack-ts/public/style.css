@@ -418,9 +418,22 @@ body.dark-mode #ranking-toggle {
 }
 
 body.dark-mode #chat-window {
-  background: rgba(255, 255, 255, 0.05);
+  background: #1a001f;
   border-color: #e0f051;
   color: #e0f051;
+}
+
+body.dark-mode #chat-toggle {
+  border-color: #e0f051;
+  border: 2px solid;
+  box-shadow: 0 0 10px #e0f051;
+}
+
+body.dark-mode #comentario-form input,
+body.dark-mode #comentario-form textarea{
+  border-color: #e0f051;
+  border: 2px solid;
+  box-shadow: 0 0 10px #e0f051;
 }
 
 #modo-toggle {
