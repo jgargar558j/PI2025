@@ -593,4 +593,33 @@ body::before {
     width: 80px;
     height: 120px;
   }
+  
+  #comentarios-section {
+    max-width: 80vw;
+   padding: 5vw;
+   font-size: 3.5vw;
+  }
+
+  #comentarios-section h2{
+    font-size: 4vw;
+  }
+
+  #comentario-form input,
+  #comentario-form textarea {
+   width: 80vw;
+   font-size: 3vw;
+   margin-bottom: 2vh;
+  }
+
+  #comentario-form button {
+   width: 80vw;
+   font-size: 3vw;
+   padding: 1vh 0;
+  }
+
+  #comentarios-lista {
+   margin-top: 3vh;
+   font-size: 3.5vw;
+  }
+
 }

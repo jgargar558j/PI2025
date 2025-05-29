@@ -264,6 +264,32 @@ export default class Settings extends Phaser.Scene {
       .setTint(0xffffff)
       .setOrigin(0.5);
 
+    const exitFullScreenTxtShadow = this.add
+      .bitmapText(
+        this.cameras.main.width / 2,
+        this.cameras.main.height / 1.45,
+        Constants.FONTS.BITMAP,
+        Constants.TEXTS.MENU.EXIT_FULLSCREEN,
+        10
+      )
+      .setTint(0x000000);
+
+    exitFullScreenTxtShadow.x += 2;
+    exitFullScreenTxtShadow.y += 2;
+    exitFullScreenTxtShadow.setOrigin(0.5, 0.5);
+
+    const exitFullScreenTxt: Phaser.GameObjects.BitmapText = this.add
+      .bitmapText(
+        this.cameras.main.width / 2,
+        this.cameras.main.height / 1.45,
+        Constants.FONTS.BITMAP,
+        Constants.TEXTS.MENU.EXIT_FULLSCREEN,
+        10
+      )
+      .setTint(0xffffff)
+      .setInteractive();
+
+    exitFullScreenTxt.setOrigin(0.5, 0.5);
     // Input HTML
     const inputElement = document.createElement("input");
     inputElement.style.position = "absolute";
@@ -308,6 +334,8 @@ export default class Settings extends Phaser.Scene {
       popupBg.destroy();
       popupText.destroy();
       popupTextShadow.destroy();
+      exitFullScreenTxt.destroy();
+      exitFullScreenTxtShadow.destroy();
       confirmBtn.destroy();
       confirmBtnShadow.destroy();
       closeBtn.destroy();
@@ -327,7 +355,13 @@ export default class Settings extends Phaser.Scene {
       .setOrigin(0.5);
 
     const confirmBtn = this.add
-      .bitmapText(centerX, centerY + 50, Constants.FONTS.BITMAP, Constants.TEXTS.MENU.SAVE, 20)
+      .bitmapText(
+        centerX,
+        centerY + 50,
+        Constants.FONTS.BITMAP,
+        Constants.TEXTS.MENU.SAVE,
+        20
+      )
       .setTint(0xffffff)
       .setOrigin(0.5)
       .setInteractive();
@@ -377,6 +411,8 @@ export default class Settings extends Phaser.Scene {
       popupBg.destroy();
       popupText.destroy();
       popupTextShadow.destroy();
+      exitFullScreenTxt.destroy();
+      exitFullScreenTxtShadow.destroy();
       confirmBtn.destroy();
       confirmBtnShadow.destroy();
       closeBtn.destroy();

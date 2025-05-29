@@ -84,7 +84,8 @@ const Constants = {
             DATA_SAVED: '¡DATOS GUARDADOS!',
             SAVE: 'GUARDAR',
             CLOSE: 'X',
-            PUT_YOUR_NAME: 'INTRODUCE\nTU NOMBRE:'
+            PUT_YOUR_NAME: 'INTRODUCE\nTU NOMBRE:',
+            EXIT_FULLSCREEN: '(SAL DE LA PANTALLA COMPLETA)'
         },
         MAPS:{
             LEVEL_1:'NIVEL 1',
