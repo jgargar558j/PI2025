@@ -6,6 +6,23 @@ import {
   child,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 window.addEventListener("DOMContentLoaded", () => {
+  // BOTON MODO CLARO/OSCURO
+  const modoToggle = document.getElementById("modo-toggle");
+
+  modoToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    const esOscuro = document.body.classList.contains("dark-mode");
+    modoToggle.textContent = esOscuro ? "🌙 Modo oscuro" : "☀️ Modo claro";
+
+    localStorage.setItem("modoOscuro", esOscuro);
+  });
+
+  if (localStorage.getItem("modoOscuro") === "true") {
+    document.body.classList.add("dark-mode");
+    modoToggle.textContent = "☀️ Modo claro";
+  }
+
   // BOTON FULLSCREEN CONFIG
   const fullscreenBtn = document.getElementById("fullscreen-btn");
   const gameContainer = document.getElementById("game-container");

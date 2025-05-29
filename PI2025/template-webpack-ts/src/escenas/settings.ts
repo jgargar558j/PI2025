@@ -188,7 +188,7 @@ export default class Settings extends Phaser.Scene {
         this.cameras.main.height / 1.1,
         Constants.FONTS.BITMAP,
         Constants.TEXTS.MENU.SYNCHRONIZE,
-        30
+        25
       )
       .setTint(0x000000);
 
@@ -202,7 +202,7 @@ export default class Settings extends Phaser.Scene {
         this.cameras.main.height / 1.1,
         Constants.FONTS.BITMAP,
         Constants.TEXTS.MENU.SYNCHRONIZE,
-        30
+        25
       )
       .setTint(0xffffff)
       .setInteractive();
@@ -240,7 +240,7 @@ export default class Settings extends Phaser.Scene {
 
     const popupBg = this.add
       .rectangle(centerX, centerY, width, height, 0x000000, 0.8)
-      .setOrigin(0.5); // Texto principal con sombra
+      .setOrigin(0.5);
 
     const popupTextShadow = this.add
       .bitmapText(
@@ -379,6 +379,8 @@ export default class Settings extends Phaser.Scene {
       popupTextShadow.destroy();
       confirmBtn.destroy();
       confirmBtnShadow.destroy();
+      closeBtn.destroy();
+      closeBtnShadow.destroy();
       document.body.removeChild(inputElement);
     });
   }
