@@ -4,6 +4,8 @@ import {
   ref,
   get,
   child,
+  onValue,
+  push
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 window.addEventListener("DOMContentLoaded", () => {
   // BOTON MODO CLARO/OSCURO
@@ -153,6 +155,28 @@ window.addEventListener("DOMContentLoaded", () => {
     chatWindow.style.display = isVisible ? "none" : "flex";
   });
 
+  // COMENTARIOS DE JUGADORES
+  const comentarioForm = document.getElementById("comentario-form");
+  const comentarioTexto = document.getElementById("comentario-texto");
+  const comentarioNombre = document.getElementById("comentario-nombre");
+  const comentariosLista = document.getElementById("comentarios-lista");
+
+  comentarioForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const texto = comentarioTexto.value.trim();
+    const nombre = comentarioNombre.value.trim();
+    if (texto && nombre) {
+      const nuevoComentario = {
+        nombre,
+        texto,
+        fecha: new Date().toISOString(),
+      };
+      await push(ref(database, "comentarios"), nuevoComentario);
+      comentarioTexto.value = "";
+      comentarioNombre.value = "";
+    }
+  });
+
   // PROGRAMACIÓN DE IA CON GEMINI
 
   const chatInput = document.getElementById("chat-input");
@@ -219,7 +243,7 @@ Si el usuario dice "qué pasa bala" o "que pasa bala", responde con: "¡Qué pas
 
         conversationHistory.push({ role: "assistant", content: aiMessage });
 
-        clearInterval(dotInterval); // detener animación de puntos
+        clearInterval(dotInterval);
         typingMessage.textContent = `🤖 ${aiMessage}`;
       } catch (error) {
         console.error("Error:", error);
@@ -237,4 +261,20 @@ Si el usuario dice "qué pasa bala" o "que pasa bala", responde con: "¡Qué pas
     chatMessages.scrollTop = chatMessages.scrollHeight;
     return message;
   }
+
+  // Mostrar comentarios
+
+  onValue(ref(database, "comentarios"), (snapshot) => {
+    comentariosLista.innerHTML = "";
+    const data = snapshot.val();
+    if (data) {
+      const comentarios = Object.values(data).reverse();
+      comentarios.forEach((comentario) => {
+        const div = document.createElement("div");
+        div.className = "comentario";
+        div.innerHTML = `<strong>${comentario.nombre}:</strong> ${comentario.texto}`;
+        comentariosLista.appendChild(div);
+      });
+    }
+  });
 });

@@ -310,6 +310,84 @@ canvas {
   }
 }
 
+#comentarios-section {
+  width: 90vw;
+  margin: 5vh auto;
+  padding: 3vh 3vw;
+  background: rgba(0, 0, 0, 0.85);
+  border: 3px solid #75217c;
+  border-radius: 20px;
+  color: #e0f051;
+  font-family: "Press Start 2P", monospace;
+  box-shadow: 0 0 20px #75217c;
+}
+
+#comentarios-section h2 {
+  color: #ee9fe7;
+  margin-bottom: 2vh;
+  text-align: center;
+}
+
+#comentario-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  margin-bottom: 3vh;
+}
+
+#comentario-nombre,
+#comentario-texto {
+  width: 100%;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.8em;
+  padding: 1vh;
+  border-radius: 10px;
+  border: 2px solid #75217c;
+  background: #1a001f;
+  color: #e0f051;
+  resize: none;
+}
+
+#comentario-texto {
+  height: 100px;
+}
+
+#comentario-form button {
+  align-self: flex-end;
+  padding: 1vh 2vw;
+  font-size: 0.8em;
+  background-color: #e0f051;
+  color: #000;
+  border: 2px solid #75217c;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#comentario-form button:hover {
+  transform: scale(1.05);
+}
+
+#comentarios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+.comentario {
+  background: #411246;
+  padding: 1vh 1vw;
+  border-radius: 10px;
+  border: 2px solid #75217c;
+  box-shadow: 0 0 10px #75217c;
+  font-size: 0.75em;
+  line-height: 1.4em;
+}
+
+.comentario strong {
+  color: #ee9fe7;
+}
+
 body.dark-mode {
   background: radial-gradient(circle at center, #1a001f, #411246);
   color: #e0f051;
