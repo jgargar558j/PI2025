@@ -184,7 +184,7 @@ export default class Settings extends Phaser.Scene {
 
     const synchronizeTxtShadow = this.add
       .bitmapText(
-        this.cameras.main.width / 1.5,
+        this.cameras.main.width / 1.4,
         this.cameras.main.height / 1.1,
         Constants.FONTS.BITMAP,
         Constants.TEXTS.MENU.SYNCHRONIZE,
@@ -198,7 +198,7 @@ export default class Settings extends Phaser.Scene {
 
     const synchronizeTxt: Phaser.GameObjects.BitmapText = this.add
       .bitmapText(
-        this.cameras.main.width / 1.5,
+        this.cameras.main.width / 1.4,
         this.cameras.main.height / 1.1,
         Constants.FONTS.BITMAP,
         Constants.TEXTS.MENU.SYNCHRONIZE,
@@ -292,13 +292,20 @@ export default class Settings extends Phaser.Scene {
     exitFullScreenTxt.setOrigin(0.5, 0.5);
     // Input HTML
     const inputElement = document.createElement("input");
+
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      inputElement.style.fontSize = "1.5vh";
+      inputElement.style.top = "37vh";
+      inputElement.style.left = "49vw";
+      inputElement.style.maxWidth = "20vw";
+    } else {
+      inputElement.style.top = "58vh";
+      inputElement.style.left = "48vw";
+      inputElement.style.fontSize = "2vh";
+      inputElement.style.maxWidth = "15vw";
+    }
     inputElement.style.position = "absolute";
-    inputElement.style.top = "58vh";
-    inputElement.style.left = "48vw";
     inputElement.style.transform = "translate(-50%, -50%)";
-    inputElement.style.width = "30vw";
-    inputElement.style.maxWidth = "15vw";
-    inputElement.style.fontSize = "2vh";
     inputElement.style.padding = "0.5vh";
     inputElement.style.borderRadius = "5px";
     inputElement.style.border = "1px solid #ccc";

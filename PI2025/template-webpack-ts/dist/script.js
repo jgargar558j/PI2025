@@ -11,6 +11,11 @@ window.addEventListener("DOMContentLoaded", () => {
   // BOTON MODO CLARO/OSCURO
   const modoToggle = document.getElementById("modo-toggle");
 
+  if (localStorage.getItem("modoOscuro") === "true") {
+    document.body.classList.add("dark-mode");
+    modoToggle.textContent = "☀️ Modo claro";
+  }
+
   modoToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 
@@ -19,11 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem("modoOscuro", esOscuro);
   });
-
-  if (localStorage.getItem("modoOscuro") === "true") {
-    document.body.classList.add("dark-mode");
-    modoToggle.textContent = "☀️ Modo claro";
-  }
 
   // BOTON FULLSCREEN CONFIG
   const fullscreenBtn = document.getElementById("fullscreen-btn");
@@ -78,6 +78,9 @@ window.addEventListener("DOMContentLoaded", () => {
         rankingContent.innerHTML = "";
 
         jugadores.forEach((jugador, index) => {
+          if(index === 3){
+            return;
+          }
           const card = document.createElement("div");
           card.className = "ranking-card";
           let medallaSrc = "";
