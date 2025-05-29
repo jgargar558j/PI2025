@@ -5,7 +5,7 @@ import {
   get,
   child,
   onValue,
-  push
+  push,
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 window.addEventListener("DOMContentLoaded", () => {
   // BOTON MODO CLARO/OSCURO
@@ -147,14 +147,6 @@ window.addEventListener("DOMContentLoaded", () => {
     observer.observe(panel);
   });
 
-  const chatWindow = document.getElementById("chat-window");
-  const chatToggle = document.getElementById("chat-toggle");
-
-  chatToggle.addEventListener("click", () => {
-    const isVisible = chatWindow.style.display === "flex";
-    chatWindow.style.display = isVisible ? "none" : "flex";
-  });
-
   // COMENTARIOS DE JUGADORES
   const comentarioForm = document.getElementById("comentario-form");
   const comentarioTexto = document.getElementById("comentario-texto");
@@ -178,6 +170,13 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // PROGRAMACIÓN DE IA CON GEMINI
+  const chatWindow = document.getElementById("chat-window");
+  const chatToggle = document.getElementById("chat-toggle");
+
+  chatToggle.addEventListener("click", () => {
+    const isVisible = chatWindow.style.display === "flex";
+    chatWindow.style.display = isVisible ? "none" : "flex";
+  });
 
   const chatInput = document.getElementById("chat-input");
   const chatMessages = document.getElementById("chat-messages");
