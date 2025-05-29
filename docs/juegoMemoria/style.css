@@ -190,20 +190,50 @@ body::before {
     pointer-events: none;
 }
 
-@media (max-width: 600px) {
-    .grid {
-        width: 90vw;
-        gap: 1vh;
-        padding: 10px;
-    }
+@media (max-width: 700px) {
+  body {
+    padding: 1vh;
+  }
 
-    .grid img {
-        width: 70px;
-        height: 100px;
-    }
+  h3 {
+    width: 100vw;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1vh auto;
+  }
 
-    h3 {
-        font-size: 1rem;
-        text-align: center;
-    }
+  .score h3 {
+    width:fit-content;
+    font-size: 1rem;
+    padding: 1vh 3vw;
+  }
+
+  .grid {
+    width: 60vw;
+    padding: 5vw;
+    gap: 1vh 2vw;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .card {
+    width: 12vw;
+    height: 10vh;
+  }
+
+  .card img {
+    border-width: 2px;
+  }
+
+  .backBtn {
+    width:fit-content;
+    font-size: 0.8rem;
+    margin: 3vh auto;
+    padding: 1vh 3vw;
+  }
+
+  #modo-toggle {
+    font-size: 0.5rem;
+    padding: 0.4rem 0.8rem;
+  }
 }
