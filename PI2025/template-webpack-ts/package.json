@@ -38,6 +38,7 @@
         "webpack-merge": "^5.10.0"
     },
     "dependencies": {
+        "firebase": "^11.8.1",
         "phaser": "^3.86.0",
         "tree": "^0.1.3"
     }

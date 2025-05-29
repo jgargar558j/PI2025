@@ -30,7 +30,8 @@ body {
   background: #411246;
   border: 4px solid #75217c;
   border-radius: 10px;
-  box-shadow: 0 0 10px #75217c, 0 0 20px #75217c, 0 0 40px #75217c, 0 0 60px #75217c;
+  box-shadow: 0 0 10px #75217c, 0 0 20px #75217c, 0 0 40px #75217c,
+    0 0 60px #75217c;
   overflow: hidden;
   position: relative;
 }
@@ -38,7 +39,8 @@ body {
 h1 {
   font-size: 6vh;
   color: #e0f051;
-  text-shadow: 0 0 2px #c4d33b, 0 0 5px #c4d33b, 0 0 10px #c4d33b, 0 0 20px #c4d33b;
+  text-shadow: 0 0 2px #c4d33b, 0 0 5px #c4d33b, 0 0 10px #c4d33b,
+    0 0 20px #c4d33b;
   margin-bottom: 5vh;
 }
 
@@ -187,7 +189,6 @@ canvas {
   font-family: "Press Start 2P", monospace;
 }
 
-
 #chat-toggle {
   position: fixed;
   bottom: 2vh;
@@ -215,19 +216,98 @@ canvas {
   display: none;
 }
 
+#ranking-section {
+  width: 90vw;
+  margin: 5vh auto;
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+}
+
+#ranking-toggle {
+  background-color: #e0f051;
+  color: #000;
+  border: 3px solid #75217c;
+  border-radius: 10px;
+  padding: 1vh 2vw;
+  font-size: 1.2vw;
+  cursor: pointer;
+  box-shadow: 0 0 10px #75217c;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#ranking-toggle:hover {
+  background-color: #d4e03b;
+  transform: scale(1.05);
+}
+
+#ranking-content {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  max-width: 60vw;
+  margin: 0 auto;
+  margin-top: 1vh;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
+#ranking-content.expanded {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.ranking-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1vw; /* Espacio entre elementos */
+  background: rgba(0, 0, 0, 0.85);
+  border: 3px solid #75217c;
+  border-radius: 15px;
+  padding: 1vh 1vw;
+  color: #e0f051;
+  box-shadow: 0 0 15px #75217c;
+}
+
+.ranking-card .medalla {
+  width: 80px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.ranking-card .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .typing {
   display: inline-block;
   font-style: italic;
   opacity: 1;
-  animation: fadeDots 1.2s infinite;
+  animation: fadeDots 2s infinite;
 }
 
 @keyframes fadeDots {
-  0% { opacity: 0.2; content: "escribiendo."; }
-  25% { opacity: 1; content: "escribiendo.."; }
-  50% { opacity: 0.2; content: "escribiendo..."; }
-  75% { opacity: 1; content: "escribiendo.."; }
-  100% { opacity: 0.2; content: "escribiendo."; }
+  0% {
+    opacity: 0.2;
+    content: "escribiendo.";
+  }
+  25% {
+    opacity: 1;
+    content: "escribiendo..";
+  }
+  50% {
+    opacity: 0.2;
+    content: "escribiendo...";
+  }
+  75% {
+    opacity: 1;
+    content: "escribiendo..";
+  }
+  100% {
+    opacity: 0.2;
+    content: "escribiendo.";
+  }
 }
 
 /*
@@ -335,5 +415,24 @@ canvas {
     border: 3px solid #75217c;
     border-radius: 10px;
     box-shadow: 0 0 10px #75217c, 0 0 20px #75217c;
+  }
+
+  #ranking-toggle{
+    min-width: 30vw;
+    font-size: 2.5vw;
+  }
+
+  .ranking-card {
+   flex-direction: row;
+   align-items: center;
+   justify-content: flex-start;
+   gap: 3vw;
+   padding: 1.5vh 3vw;
+   font-size: 2.5vw;
+  }
+
+  .ranking-card .medalla {
+   width: 80px;
+   height: 120px;
   }
 }

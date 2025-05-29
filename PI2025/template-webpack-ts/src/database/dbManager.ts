@@ -1,4 +1,6 @@
+import { ref, set } from "firebase/database";
 import Constants from "../constantes";
+import { database } from "./firebaseConfig";
 
 export default class DBManager {
   public data: any;
@@ -68,5 +70,27 @@ export default class DBManager {
     if (!requiredLevel) return true;
 
     return this.data.levels[requiredLevel]?.isPassed === true;
+  }
+
+  public saveResumenToFirebase(userName: string): void {
+    const userId = userName;
+
+    let puntuacionTotal = 0;
+    for (const nivel in this.data.levels) {
+      const nivelData = this.data.levels[nivel];
+      if (nivelData.isPassed) {
+        puntuacionTotal += nivelData.score;
+      }
+    }
+
+    const resumen = {
+      nombre: userId,
+      puntuacionTotal: puntuacionTotal,
+    };
+
+    const dbRef = ref(database, `jugadores/${userId}`);
+    set(dbRef, resumen)
+      .then(() => console.log("Resumen guardado en Firebase"))
+      .catch((error) => console.error("Error al guardar resumen:", error));
   }
 }

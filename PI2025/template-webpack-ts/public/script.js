@@ -1,3 +1,10 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  get,
+  child,
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 window.addEventListener("DOMContentLoaded", () => {
   // BOTON FULLSCREEN CONFIG
   const fullscreenBtn = document.getElementById("fullscreen-btn");
@@ -10,6 +17,94 @@ window.addEventListener("DOMContentLoaded", () => {
       gameContainer.webkitRequestFullscreen();
     } else if (gameContainer.msRequestFullscreen) {
       gameContainer.msRequestFullscreen();
+    }
+  });
+
+  // DESPLEGABLE RANKING
+  const toggleBtn = document.getElementById("ranking-toggle");
+  const content = document.getElementById("ranking-content");
+  const section = document.getElementById("ranking-section");
+
+  content.classList.remove("expanded");
+  toggleBtn.textContent = "Ranking ▼";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB44_8D563uv-utz8sSSd7E-ap5ukDNP9o",
+    authDomain: "frogalone-77.firebaseapp.com",
+    databaseURL:
+      "https://frogalone-77-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "frogalone-77",
+    storageBucket: "frogalone-77.firebasestorage.app",
+    messagingSenderId: "1051677992729",
+    appId: "1:1051677992729:web:3e14cdeb237608863e4788",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+
+  const rankingContent = document.getElementById("ranking-content");
+
+  async function cargarRanking() {
+    rankingContent.innerHTML = "<p>Cargando ranking...</p>";
+
+    const dbRef = ref(database);
+    try {
+      const snapshot = await get(child(dbRef, "jugadores"));
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const jugadores = Object.values(data);
+
+        jugadores.sort((a, b) => b.puntuacionTotal - a.puntuacionTotal);
+
+        rankingContent.innerHTML = "";
+
+        jugadores.forEach((jugador, index) => {
+          const card = document.createElement("div");
+          card.className = "ranking-card";
+          let medallaSrc = "";
+          if (index === 0) medallaSrc = "./assets/imagenes/medallas/oro.png";
+          else if (index === 1)
+            medallaSrc = "./assets/imagenes/medallas/plata.png";
+          else if (index === 2)
+            medallaSrc = "./assets/imagenes/medallas/bronce.png";
+
+          card.innerHTML = `
+            ${
+              medallaSrc
+                ? `<img src="${medallaSrc}" alt="Medalla" class="medalla" />`
+                : ""
+            }
+            <div>
+              <h3>${index + 1}. ${jugador.nombre}</h3>
+              <p>Puntos: ${jugador.puntuacionTotal}</p>
+            </div>
+          `;
+          rankingContent.appendChild(card);
+        });
+      } else {
+        rankingContent.innerHTML =
+          "<p>No hay datos de ranking disponibles.</p>";
+      }
+    } catch (error) {
+      console.error("Error al cargar el ranking:", error);
+      rankingContent.innerHTML = "<p>Error al cargar el ranking.</p>";
+    }
+  }
+
+  toggleBtn.addEventListener("click", async () => {
+    const isExpanded = content.classList.contains("expanded");
+
+    if (!isExpanded) {
+      await cargarRanking();
+    }
+
+    content.classList.toggle("expanded", !isExpanded);
+    toggleBtn.textContent = isExpanded ? "Ranking ▼" : "Ranking ▲";
+
+    if (!isExpanded) {
+      setTimeout(() => {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
     }
   });
 
@@ -112,7 +207,8 @@ Si el usuario dice "qué pasa bala" o "que pasa bala", responde con: "¡Qué pas
       } catch (error) {
         console.error("Error:", error);
         clearInterval(dotInterval);
-        typingMessage.textContent = "🤖 Ocurrió un error al procesar tu mensaje.";
+        typingMessage.textContent =
+          "🤖 Ocurrió un error al procesar tu mensaje.";
       }
     }
   });

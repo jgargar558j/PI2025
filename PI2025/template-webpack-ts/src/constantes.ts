@@ -80,6 +80,11 @@ const Constants = {
             EFFECTS: 'EFECTOS',
             NEXT: 'SIGUIENTE NIVEL',
             RETRY: 'REINTENTAR',
+            SYNCHRONIZE: 'SINCRONIZAR DATOS',
+            DATA_SAVED: '¡DATOS GUARDADOS!',
+            SAVE: 'GUARDAR',
+            CLOSE: 'X',
+            PUT_YOUR_NAME: 'INTRODUCE\nTU NOMBRE:'
         },
         MAPS:{
             LEVEL_1:'NIVEL 1',
