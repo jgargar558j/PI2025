@@ -78,7 +78,7 @@ window.addEventListener("DOMContentLoaded", () => {
         rankingContent.innerHTML = "";
 
         jugadores.forEach((jugador, index) => {
-          if(index === 3){
+          if(index <= 3){
             return;
           }
           const card = document.createElement("div");
