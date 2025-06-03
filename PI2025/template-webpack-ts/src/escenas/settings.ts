@@ -8,16 +8,22 @@ export default class Settings extends Phaser.Scene {
 
   private database: DBManager;
 
+  private width: number;
+  private height: number;
+
+  private backTxt: Phaser.GameObjects.BitmapText;
+
   constructor() {
     super(Constants.SCENES.SETTINGS);
   }
 
+  init() {
+    this.width = this.cameras.main.width;
+    this.height = this.cameras.main.height;
+  }
+
   create() {
-    this.add
-      .image(this.cameras.main.width / 2, this.cameras.main.height / 2, "logo")
-      .setScale(0.4)
-      .setAlpha(0.5)
-      .setOrigin(0.5, 0.5);
+    this.createBackground();
     this.database = new DBManager();
 
     this.cameras.main.setBackgroundColor("#f09cbd");
@@ -72,6 +78,24 @@ export default class Settings extends Phaser.Scene {
 
   getSoundImg(sound: boolean): string {
     return sound ? Constants.SETTINGS.SOUND_ON : Constants.SETTINGS.SOUND_OFF;
+  }
+
+  createBackground() {
+    this.add.image(this.width / 2, this.height / 2, Constants.BACKGROUNDS.MENU)
+      .setScale(0.6)
+      .setAlpha(0.7)
+      .setOrigin(0.5, 0.5).setDepth(-1);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.85)
+      .setOrigin(0.47, 0.47)
+      .setAlpha(.7)
+      .setTint(0x0000);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.8)
+      .setAlpha(.6)
+      .setOrigin(0.5, 0.5);
   }
 
   createTexts() {
@@ -167,7 +191,7 @@ export default class Settings extends Phaser.Scene {
     backTxtShadow.y += 2;
     backTxtShadow.setOrigin(0.5, 0.5);
 
-    const backTxt: Phaser.GameObjects.BitmapText = this.add
+    this.backTxt = this.add
       .bitmapText(
         this.cameras.main.width / 8,
         this.cameras.main.height / 1.1,
@@ -178,9 +202,9 @@ export default class Settings extends Phaser.Scene {
       .setTint(0xffffff)
       .setInteractive();
 
-    backTxt.setOrigin(0.5, 0.5);
+    this.backTxt.setOrigin(0.5, 0.5);
 
-    this.changeSceneToMenu(backTxt, Constants.SCENES.MENU);
+    this.changeSceneToMenu(this.backTxt, Constants.SCENES.MENU);
 
     const synchronizeTxtShadow = this.add
       .bitmapText(
@@ -227,6 +251,7 @@ export default class Settings extends Phaser.Scene {
       if (this.database.data.effects) {
         this.clickSound.play();
       }
+      this.backTxt.disableInteractive();
       synchronizeTxt.disableInteractive();
       this.showSyncPopup(synchronizeTxt);
     });
@@ -338,6 +363,7 @@ export default class Settings extends Phaser.Scene {
 
     closeBtn.on("pointerdown", () => {
       synchronizeTxt.setInteractive();
+      this.backTxt.setInteractive();
       popupBg.destroy();
       popupText.destroy();
       popupTextShadow.destroy();
@@ -415,6 +441,7 @@ export default class Settings extends Phaser.Scene {
       }
 
       synchronizeTxt.setInteractive();
+      this.backTxt.setInteractive();
       popupBg.destroy();
       popupText.destroy();
       popupTextShadow.destroy();

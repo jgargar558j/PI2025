@@ -79,7 +79,10 @@ export default class Load extends Phaser.Scene{
 
     chargeAssets():void{
         this.load.image('logo', 'logo.png');
-        this.load.image(Constants.OBJECTS.LOGO,'imagenes/decorativeBackground/logoNoBG.png')
+        this.load.image(Constants.OBJECTS.LOGO,'imagenes/decorativeBackground/logoNoBG.png');
+        this.load.image(Constants.BACKGROUNDS.MENU, 'imagenes/decorativeBackground/backgroundRetro.jpg');
+        this.load.image(Constants.OBJECTS.RETRO_SIGN, 'imagenes/decorativeBackground/retroSign.png');
+        this.load.image(Constants.OBJECTS.RETRO_SIGN_PURPLE, 'imagenes/decorativeBackground/retroSignPurple.png');
 
         // Cargar el tilemap y el tileset
         this.load.tilemapTiledJSON(Constants.MAPS.LEVELS.LEVEL_1.TILEMAP_JSON, 'levels/nivel1.json');

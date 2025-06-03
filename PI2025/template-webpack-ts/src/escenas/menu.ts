@@ -57,11 +57,19 @@ export default class Menu extends Phaser.Scene {
   }
 
   createBackground() {
+    this.add.image(this.width / 2, this.height / 2, Constants.BACKGROUNDS.MENU)
+      .setScale(0.6)
+      .setAlpha(0.7)
+      .setOrigin(0.5, 0.5).setDepth(-1);
     this.add
-      .image(this.width / 2, this.height / 2, "logo")
-      .setScale(0.4)
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.85)
+      .setOrigin(0.47, 0.47)
+      .setTint(0x0000);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.8)
       .setOrigin(0.5, 0.5);
-    this.cameras.main.setBackgroundColor("#f09cbd");
   }
 
   createTexts() {
@@ -69,92 +77,185 @@ export default class Menu extends Phaser.Scene {
     this.createSettingsTxt();
     this.createCreditsTxt();
   }
-
   createPlayText() {
-    const playTxtShadow = this.add
-      .bitmapText(
-        this.width / 2,
-        this.height / 1.1,
-        Constants.FONTS.BITMAP,
-        Constants.TEXTS.MENU.PLAY,
-        35
-      )
-      .setTint(0x000000); // Color negro para el borde
+    const text = Constants.TEXTS.MENU.PLAY;
+    const font = Constants.FONTS.BITMAP;
+    const fontSize = 35;
+    const x = this.width / 2;
+    const y = this.height / 1.1;
 
-    // Desplazar el texto de sombra para simular un borde
-    playTxtShadow.setOrigin(0.5, 0.5);
-    playTxtShadow.x -= 2;
-    playTxtShadow.y -= 2;
+    const retroSign = this.add.image(x, y, Constants.OBJECTS.RETRO_SIGN).setDepth(-1).setScale(0.3).setInteractive();
 
-    const playTxt: Phaser.GameObjects.BitmapText = this.add
-      .bitmapText(
-        this.width / 2,
-        this.height / 1.1,
-        Constants.FONTS.BITMAP,
-        Constants.TEXTS.MENU.PLAY,
-        35
-      )
+    const playTxtShadow = this.add.bitmapText(x, y - 2, font, text, fontSize)
+      .setOrigin(0.5)
+      .setTint(0x0000);
+
+    const playTxt = this.add.bitmapText(x - 4, y - 6, font, text, fontSize)
+      .setOrigin(0.5)
       .setInteractive();
 
-    playTxt.setOrigin(0.5, 0.5);
+    this.tweens.add({
+      targets: [retroSign, playTxt],
+      alpha: { from: 1, to: 0.65 },
+      duration: 500,
+      yoyo: true,
+      repeat: -1,
+      ease: 'Sine.easeInOut'
+    });
+
+    retroSign.on('pointerover', () => {
+      this.tweens.add({
+        targets: [retroSign, playTxtShadow, playTxt],
+        y: y - 10,
+        duration: 200,
+        ease: 'Back.Out'
+      });
+    });
+
+    retroSign.on('pointerout', () => {
+      this.tweens.add({
+        targets: [retroSign, playTxtShadow, playTxt],
+        y: y,
+        duration: 200,
+        ease: 'Back.In'
+      });
+    });
+
     this.changeSceneToLevel(playTxt, Constants.SCENES.LEVEL_SELECTION);
   }
 
   createSettingsTxt() {
+    const textY = this.height / 1.2;       // Y para el texto
+    const retroSignY = this.height / 1.15; // Y para retroSign
+
     const settingsTxtShadow = this.add
       .bitmapText(
         this.width / 20,
-        this.height / 1.2,
+        textY,
         Constants.FONTS.BITMAP,
         Constants.TEXTS.MENU.SETTINGS,
         25
       )
-      .setTint(0x000000); // Color negro para el borde
+      .setTint(0x000000);
 
-    // Desplazar el texto de sombra para simular un borde
     settingsTxtShadow.x -= 2;
     settingsTxtShadow.y -= 2;
 
     const settingsTxt: Phaser.GameObjects.BitmapText = this.add
       .bitmapText(
         this.width / 20,
-        this.height / 1.2,
+        textY,
         Constants.FONTS.BITMAP,
         Constants.TEXTS.MENU.SETTINGS,
         25
       )
       .setInteractive();
 
+    const retroSign = this.add.image(this.width / 6.5, retroSignY, Constants.OBJECTS.RETRO_SIGN_PURPLE)
+      .setDepth(-1)
+      .setScale(0.25)
+      .setInteractive();
+
+    retroSign.on('pointerover', () => {
+      this.tweens.add({
+        targets: [retroSign],
+        y: retroSignY - 10,
+        duration: 200,
+        ease: 'Back.Out'
+      });
+      this.tweens.add({
+        targets: [settingsTxtShadow, settingsTxt],
+        y: textY - 10,
+        duration: 200,
+        ease: 'Back.Out'
+      });
+    });
+
+    retroSign.on('pointerout', () => {
+      this.tweens.add({
+        targets: [retroSign],
+        y: retroSignY,
+        duration: 200,
+        ease: 'Back.In'
+      });
+      this.tweens.add({
+        targets: [settingsTxtShadow, settingsTxt],
+        y: textY,
+        duration: 200,
+        ease: 'Back.In'
+      });
+    });
+
     this.changeSceneToSettings(settingsTxt, Constants.SCENES.SETTINGS);
   }
 
   createCreditsTxt() {
+    const textX = this.width / 1.4;
+    const textY = this.height / 1.2;
+
+    const retroSignY = this.height / 1.15;
+
     const creditsTxtShadow = this.add
       .bitmapText(
-        this.width / 1.4,
-        this.height / 1.2,
+        textX,
+        textY,
         Constants.FONTS.BITMAP,
         Constants.TEXTS.MENU.CREDITS,
         25
       )
-      .setTint(0x000000); // Color negro para el borde
+      .setTint(0x000000);
 
-    // Desplazar el texto de sombra para simular un borde
     creditsTxtShadow.x -= 2;
     creditsTxtShadow.y -= 2;
 
     const creditsTxt: Phaser.GameObjects.BitmapText = this.add
       .bitmapText(
-        this.width / 1.4,
-        this.height / 1.2,
+        textX,
+        textY,
         Constants.FONTS.BITMAP,
         Constants.TEXTS.MENU.CREDITS,
         25
       )
       .setInteractive();
 
+    const retroSign = this.add.image(this.width / 1.20, retroSignY, Constants.OBJECTS.RETRO_SIGN_PURPLE)
+      .setDepth(-1)
+      .setScale(0.3,0.25)
+      .setInteractive();
+
+    retroSign.on('pointerover', () => {
+      this.tweens.add({
+        targets: [retroSign],
+        y: retroSignY - 10,
+        duration: 200,
+        ease: 'Back.Out'
+      });
+      this.tweens.add({
+        targets: [creditsTxtShadow, creditsTxt],
+        y: textY - 10,
+        duration: 200,
+        ease: 'Back.Out'
+      });
+    });
+
+    retroSign.on('pointerout', () => {
+      this.tweens.add({
+        targets: [retroSign],
+        y: retroSignY,
+        duration: 200,
+        ease: 'Back.In'
+      });
+      this.tweens.add({
+        targets: [creditsTxtShadow, creditsTxt],
+        y: textY,
+        duration: 200,
+        ease: 'Back.In'
+      });
+    });
+
     this.changeSceneToSettings(creditsTxt, Constants.SCENES.CREDITS);
   }
+
 
   /**
    * Cuando se puse sobre el texto nos llevará a la escena indicada.
@@ -163,7 +264,7 @@ export default class Menu extends Phaser.Scene {
    */
   changeSceneToLevel(playTxt: Phaser.GameObjects.BitmapText, scene: string) {
     playTxt.on("pointerdown", () => {
-      if(this.database.data.effects){
+      if (this.database.data.effects) {
         this.clickSound.play();
       }
       this.scene.start(scene); // Lanza la escena LevelSelection y detiene la actual
@@ -175,7 +276,7 @@ export default class Menu extends Phaser.Scene {
     scene: string
   ) {
     settingsTxt.on("pointerdown", () => {
-      if(this.database.data.effects){
+      if (this.database.data.effects) {
         this.clickSound.play();
       }
       this.scene.start(scene); // Lanza la escena Settings sin detener la actual

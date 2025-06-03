@@ -44,6 +44,7 @@ const Constants = {
         TEXTS: 'texto'
     },
     BACKGROUNDS:{
+        MENU: 'Menu',
         LEVEL_1: 'Blue',
         LEVEL_2: 'Green',
         LEVEL_3: 'Brown',
@@ -85,7 +86,8 @@ const Constants = {
             SAVE: 'GUARDAR',
             CLOSE: 'X',
             PUT_YOUR_NAME: 'INTRODUCE\nTU NOMBRE:',
-            EXIT_FULLSCREEN: '(SAL DE LA PANTALLA COMPLETA)'
+            EXIT_FULLSCREEN: '(SAL DE LA PANTALLA COMPLETA)',
+            BACK_TO_MENU: 'VOLVER AL MENU'
         },
         MAPS:{
             LEVEL_1:'NIVEL 1',
@@ -140,6 +142,8 @@ const Constants = {
             }
         },
         LOGO: 'logoNoBG',
+        RETRO_SIGN: 'retroSign',
+        RETRO_SIGN_PURPLE: 'retroSignPurple',
         ANIMATION:'collected'
 
     },

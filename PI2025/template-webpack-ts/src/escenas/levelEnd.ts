@@ -12,6 +12,9 @@ export default class LevelEnd extends Phaser.Scene {
 
   private clickSound: Phaser.Sound.BaseSound;
 
+  private width: number;
+  private height: number;
+
   constructor() {
     super(Constants.SCENES.LEVEL_END);
   }
@@ -21,6 +24,8 @@ export default class LevelEnd extends Phaser.Scene {
     this.levelName = data.levelName;
     this.isWin = data.isWin;
     this.score = data.score;
+    this.width = this.cameras.main.width;
+    this.height = this.cameras.main.height;
   }
 
   create(): void {
@@ -34,6 +39,8 @@ export default class LevelEnd extends Phaser.Scene {
       )
       .setOrigin(0, 0)
       .setDepth(-1);
+
+      this.createBackground();
 
     this.clickSound = this.sound.add(Constants.SOUNDS.EFFECTS.CLICK, {
       loop: false,
@@ -128,10 +135,13 @@ export default class LevelEnd extends Phaser.Scene {
 
     this.changeSceneToMenu(backTxt, Constants.SCENES.LEVEL_SELECTION);
 
-    const rightButtonText = this.isWin
+    let rightButtonText = this.isWin
       ? Constants.TEXTS.MENU.NEXT
       : Constants.TEXTS.MENU.RETRY;
 
+    if (this.levelName == Constants.SCENES.LEVELS.LEVEL_5) {
+      rightButtonText = Constants.TEXTS.MENU.BACK_TO_MENU;
+    }
     const fontSize = rightButtonText.length > 10 ? 20 : 24;
 
     const rightTxtShadow = this.add
@@ -193,6 +203,23 @@ export default class LevelEnd extends Phaser.Scene {
         this.scene.bringToTop(Constants.SCENES.HUD);
       }
     });
+  }
+
+  createBackground() {
+    this.add.image(this.width / 2, this.height / 2, Constants.BACKGROUNDS.MENU)
+      .setScale(0.6)
+      .setAlpha(0.7)
+      .setOrigin(0.5, 0.5).setDepth(-1);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.85)
+      .setOrigin(0.47, 0.47)
+      .setTint(0x0000);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.8)
+      .setAlpha(.6)
+      .setOrigin(0.5, 0.5);
   }
 
   update(): void {

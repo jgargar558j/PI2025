@@ -15,13 +15,26 @@ export default class Credits extends Phaser.Scene {
   }
 
   create() {
-    this.add
-      .image(this.width / 2, this.height / 2, "logo")
-      .setScale(0.4)
-      .setAlpha(0.5)
-      .setOrigin(0.5, 0.5);
+    this.createBackground();
     this.cameras.main.setBackgroundColor("#f09cbd");
     this.createTexts();
+  }
+
+  createBackground() {
+    this.add.image(this.width / 2, this.height / 2, Constants.BACKGROUNDS.MENU)
+      .setScale(0.6)
+      .setAlpha(0.7)
+      .setOrigin(0.5, 0.5).setDepth(-1);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.85)
+      .setOrigin(0.47, 0.47)
+      .setTint(0x0000);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.8)
+      .setAlpha(.6)
+      .setOrigin(0.5, 0.5);
   }
 
   createTexts() {

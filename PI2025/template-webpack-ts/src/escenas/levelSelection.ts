@@ -5,13 +5,19 @@ export default class LevelSelection extends Phaser.Scene {
   private clickSound: Phaser.Sound.BaseSound;
   private database: DBManager;
   private lockSound: Phaser.Sound.BaseSound;
+  private width: number;
+  private height: number;
 
   constructor() {
     super(Constants.SCENES.LEVEL_SELECTION);
   }
 
+  init() {
+    this.width = this.cameras.main.width;
+    this.height = this.cameras.main.height;
+  }
+
   create() {
-    this.cameras.main.setBackgroundColor("#f09cbd");
     this.clickSound = this.sound.add(Constants.SOUNDS.EFFECTS.CLICK, {
       loop: false,
       volume: 2,
@@ -22,12 +28,7 @@ export default class LevelSelection extends Phaser.Scene {
     });
     this.database = new DBManager();
     this.createTexts();
-    this.add
-      .image(this.cameras.main.width / 2, this.cameras.main.height / 2, "logo")
-      .setScale(0.4)
-      .setAlpha(0.2)
-      .setOrigin(0.5, 0.5)
-      .setDepth(-1);
+    this.createBackground();
   }
 
   createTexts() {
@@ -144,6 +145,23 @@ export default class LevelSelection extends Phaser.Scene {
       .setInteractive();
     backTxt.setOrigin(0.5, 0.5);
     this.changeSceneToMenu(backTxt, Constants.SCENES.MENU);
+  }
+
+  createBackground() {
+    this.add.image(this.width / 2, this.height / 2, Constants.BACKGROUNDS.MENU)
+      .setScale(0.6)
+      .setAlpha(0.7)
+      .setOrigin(0.5, 0.5).setDepth(-1);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.85)
+      .setOrigin(0.47, 0.47).setDepth(-1)
+      .setTint(0x0000);
+    this.add
+      .image(this.width / 2, this.height / 2, Constants.OBJECTS.LOGO)
+      .setScale(.8)
+      .setAlpha(.6).setDepth(-1)
+      .setOrigin(0.5, 0.5);
   }
 
   changeSceneToMenu(backTxt: Phaser.GameObjects.BitmapText, scene: string) {
